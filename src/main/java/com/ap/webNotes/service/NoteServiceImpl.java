@@ -28,5 +28,8 @@ public class NoteServiceImpl implements NoteService {
         return noteRepositiry.findById(noteId);
     }
 
-
+    @Override
+    public void deleteNote(Integer id) {
+        noteRepositiry.deleteById(id);
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class webNotesController {
@@ -51,6 +52,21 @@ public class webNotesController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView do_update(@Validated Note n, BindingResult bindingResult) {
         noteService.saveNote(n);
+        return new ModelAndView("redirect:/");
+    }
+
+    @RequestMapping(value = "/delete/{noteId}", method = RequestMethod.GET)
+    public ModelAndView delete_confirm(@PathVariable Integer noteId) {
+        ModelAndView mav = new ModelAndView();
+        Optional<Note>noteFound = noteService.findById(noteId);
+        mav.addObject("note", noteFound.get());
+        mav.setViewName("delete_confirm");
+        return mav;
+    }
+
+    @RequestMapping(value = "/do_delete", method = RequestMethod.POST)
+    public ModelAndView do_delete(@Validated Note n, BindingResult bindingResult) {
+        noteService.deleteNote(n.getId());
         return new ModelAndView("redirect:/");
     }
 }

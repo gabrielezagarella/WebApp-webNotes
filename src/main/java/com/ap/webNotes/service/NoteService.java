@@ -11,4 +11,5 @@ public interface NoteService {
     public  void saveNote(Note n);
     public List<Note> getAll();
     public Optional<Note> findById(Integer noteId);
+    public void deleteNote(Integer id);
 }
