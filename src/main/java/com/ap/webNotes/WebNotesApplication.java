@@ -9,5 +9,4 @@ public class WebNotesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebNotesApplication.class, args);
 	}
-
 }
