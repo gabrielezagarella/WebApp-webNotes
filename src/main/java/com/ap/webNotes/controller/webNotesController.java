@@ -5,6 +5,8 @@ import com.ap.webNotes.repository.NoteRepositiry;
 import com.ap.webNotes.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,19 @@ public class webNotesController {
         mav.setViewName("home");
         List<Note>listNote = noteService.getAll();
         mav.addObject("listNote", listNote);
+        mav.addObject("note", new Note());
+        return mav;
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ModelAndView add (@Validated Note note, BindingResult bindingResult) {
+        ModelAndView mav = new ModelAndView();
+
+        noteService.saveNote(note);
+        List<Note>listNote = noteService.getAll();
+        mav.addObject("listNote", listNote);
+        mav.addObject("note", new Note());
+        mav.setViewName("home");
         return mav;
     }
 }

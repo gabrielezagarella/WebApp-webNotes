@@ -7,10 +7,15 @@
 </head>
 <body>
     <div>Home</div>
+        <form action="#" method="post" th:action="@{/}" th:object="${note}">
+            <input type="text" th:field="*{title}" placeholder="title"/>
+            <input type="text" th:field="*{content}" placeholder="content"/>
+            <input type="submit" value="save"/>
+        </form>
         <ul>
             <li th:each="note: ${listNote}">
-                <b th:text="${note.title}">Titolo</b>
-                <p th:text="${note.content}">contenuto</p>
+                <b th:text="${note.title}">Title</b>
+                <p th:text="${note.content}">content</p>
             </li>
         </ul>
 </body>
