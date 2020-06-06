@@ -16,6 +16,9 @@
             <li th:each="note: ${listNote}">
                 <b th:text="${note.title}">Title</b>
                 <p th:text="${note.content}">content</p>
+                <p>
+                    <a href ="#" th:href="@{|/edit/${note.id}|}">modifica</a>
+                </p>
             </li>
         </ul>
 </body>
