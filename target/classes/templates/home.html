@@ -4,23 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale-1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-    <div>Home</div>
+<section class="section">
+    <div class="container">
+        <h1 class="title">
+            Home
+        </h1>
         <form action="#" method="post" th:action="@{/}" th:object="${note}">
-            <input type="text" th:field="*{title}" placeholder="title"/>
-            <input type="text" th:field="*{content}" placeholder="content"/>
-            <input type="submit" value="save"/>
+            <div class="column">
+                <input class="input is-info" type="text" th:field="*{title}" placeholder="title"/>
+            </div>
+            <div class="column">
+                <input class="input is-info" type="text" th:field="*{content}" placeholder="content"/>
+            </div>
+            <div class="column">
+                <div class="control">
+                    <button class="button is-link">Save</button>
+                </div>
+            </div>
         </form>
-        <ul>
-            <li th:each="note: ${listNote}">
-                <b th:text="${note.title}">Title</b>
-                <p th:text="${note.content}">content</p>
-                <p>
-                    <a href ="#" th:href="@{|/edit/${note.id}|}">update</a>
-                    <a href ="#" th:href="@{|/delete/${note.id}|}">delete</a>
-                </p>
-            </li>
-        </ul>
+        <div class="column">
+            <ul class="subtitle">
+                <li th:each="note: ${listNote}">
+                    <b th:text="${note.title}">Title</b>
+                    <p th:text="${note.content}">content</p>
+                    <p>
+                        <a href="#" th:href="@{|/edit/${note.id}|}">update</a>
+                        <a href="#" th:href="@{|/delete/${note.id}|}">delete</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
 </body>
 </html>

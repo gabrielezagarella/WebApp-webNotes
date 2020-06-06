@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale-1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-    <div>Delete confirm</div>
-        <p>delete note <span th:text="${note.title}">title note</span></p>
-        <form action="#" method="post" th:action="@{/do_delete}" th:object="${note}">
-            <input type="hidden" th:field="*{id}">
-            <input type="submit" value="Delete"/>
-        </form>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <h1 class="subtitle">Confirm deletion</h1>
+                <p>delete note <span th:text="${note.title}">title note</span></p>
+                <div class="column">
+                    <form action="#" method="post" th:action="@{/do_delete}" th:object="${note}">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="control">
+                            <button class="button is-link is-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
